@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre — Telma Palma · Psicóloga Clínica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream:     #F5F0EA;
+      --warm-white:#FDFAF6;
+      --slate-blue:#7B92A8;
+      --deep-blue: #4A6378;
+      --brown:     #8C6E55;
+      --text:      #2C2C2C;
+      --text-soft: #6B6B6B;
+      --border:    rgba(123,146,168,0.2);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      background: rgba(253,250,246,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; letter-spacing: 0.04em; color: var(--deep-blue); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-soft); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--deep-blue); }
+    .nav-cta { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-white); background: var(--deep-blue); border: none; padding: 0.7rem 1.6rem; cursor: pointer; text-decoration: none; transition: background 0.3s; }
+    .nav-cta:hover { background: var(--slate-blue); }
+
+    /* HERO SOBRE */
+    .sobre-hero {
+      padding-top: 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 90vh;
+    }
+    .sobre-hero-content {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 5rem 6rem 6rem;
+      background: var(--deep-blue);
+      color: var(--warm-white);
+      animation: fadeUp 1s ease both;
+    }
+    .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate-blue); margin-bottom: 1.2rem; }
+    .sobre-hero-content .section-label { color: rgba(255,255,255,0.45); }
+    .sobre-hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 3.5vw, 3.8rem);
+      font-weight: 300; line-height: 1.2;
+      color: var(--warm-white); margin-bottom: 2rem;
+    }
+    .sobre-hero-title em { font-style: italic; color: rgba(255,255,255,0.65); }
+    .sobre-hero-sub {
+      font-size: 1rem; font-weight: 300; line-height: 1.9;
+      color: rgba(255,255,255,0.7); max-width: 420px;
+      margin-bottom: 2.5rem;
+    }
+    .crp-badge {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 1.5rem; margin-top: 0.5rem;
+    }
+    .sobre-hero-img {
+      position: relative; overflow: hidden;
+    }
+    .sobre-hero-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      filter: sepia(10%) saturate(85%);
+    }
+
+    /* VALORES */
+    .valores {
+      padding: 7rem 6rem;
+      background: var(--cream);
+    }
+    .valores-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+    .valor-item { }
+    .valor-icon {
+      width: 40px; height: 2px;
+      background: var(--slate-blue);
+      margin-bottom: 1.5rem;
+    }
+    .valor-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 400;
+      color: var(--text); margin-bottom: 0.8rem;
+    }
+    .valor-text {
+      font-size: 0.88rem; font-weight: 300;
+      line-height: 1.8; color: var(--text-soft);
+    }
+
+    /* HISTÓRIA */
+    .historia {
+      padding: 7rem 6rem;
+      background: var(--warm-white);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .historia-sticky {
+      position: sticky; top: 120px;
+    }
+    .historia-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+      font-weight: 300; line-height: 1.3;
+      color: var(--text); margin-top: 1rem;
+    }
+    .historia-label em { font-style: italic; color: var(--slate-blue); }
+    .historia-content { }
+    .historia-block {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .historia-block:last-child { border-bottom: none; margin-bottom: 0; }
+    .historia-block h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 400;
+      color: var(--text); margin-bottom: 1rem;
+    }
+    .historia-block p {
+      font-size: 0.95rem; font-weight: 300;
+      line-height: 1.9; color: var(--text-soft);
+    }
+    .historia-block p + p { margin-top: 1rem; }
+
+    /* COISAS QUE NINGUÉM SABE */
+    .coisas {
+      padding: 7rem 6rem;
+      background: var(--deep-blue);
+      color: var(--warm-white);
+    }
+    .coisas .section-label { color: rgba(255,255,255,0.45); margin-bottom: 3rem; }
+    .coisas-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+      font-weight: 300; line-height: 1.3;
+      color: var(--warm-white); margin-bottom: 4rem;
+      max-width: 500px;
+    }
+    .coisas-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+    .coisa-card {
+      background: rgba(255,255,255,0.05);
+      padding: 2.5rem;
+      transition: background 0.3s;
+    }
+    .coisa-card:hover { background: rgba(255,255,255,0.09); }
+    .coisa-card p {
+      font-size: 0.92rem; font-weight: 300;
+      line-height: 1.8; color: rgba(255,255,255,0.75);
+      font-style: italic;
+    }
+    .coisa-card p::before {
+      content: '"'; font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; line-height: 0; vertical-align: -0.6em;
+      color: rgba(255,255,255,0.2); margin-right: 0.3rem;
+    }
+
+    /* CTA */
+    .cta-sobre {
+      padding: 8rem 6rem;
+      background: var(--cream);
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 3.2rem);
+      font-weight: 300; line-height: 1.25;
+      color: var(--text); max-width: 600px; margin-bottom: 1.5rem;
+    }
+    .cta-sub {
+      font-size: 0.95rem; font-weight: 300; line-height: 1.8;
+      color: var(--text-soft); max-width: 440px; margin-bottom: 3rem;
+    }
+    .btn-primary { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-white); background: var(--deep-blue); padding: 1rem 2.2rem; text-decoration: none; transition: background 0.3s; }
+    .btn-primary:hover { background: var(--slate-blue); }
+
+    /* FOOTER */
+    footer { padding: 3rem 6rem; background: var(--text); color: rgba(255,255,255,0.5); display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--warm-white); text-decoration: none; }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--warm-white); }
+    .footer-copy { font-size: 0.72rem; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      .sobre-hero { grid-template-columns: 1fr; }
+      .sobre-hero-content { padding: 5rem 2rem 3rem; }
+      .sobre-hero-img { height: 60vw; }
+      .valores { padding: 5rem 2rem; }
+      .valores-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .historia { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2rem; }
+      .historia-sticky { position: static; }
+      .coisas { padding: 5rem 2rem; }
+      .coisas-grid { grid-template-columns: 1fr; }
+      .cta-sobre { padding: 5rem 2rem; }
+      footer { flex-direction: column; gap: 1.5rem; padding: 2rem; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Telma Palma</a>
+    <ul class="nav-links">
+      <li><a href="sobre.html" class="active">Sobre</a></li>
+      <li><a href="servicos.html">Serviços</a></li>
+      <li><a href="pensamentos.html">Pensamentos</a></li>
+      <li><a href="agendamento.html">Agendamento</a></li>
+    </ul>
+    <a href="agendamento.html" class="nav-cta">Agendar Consulta</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="sobre-hero">
+    <div class="sobre-hero-content">
+      <p class="section-label">Sobre mim</p>
+      <h1 class="sobre-hero-title">
+        Quem eu fui não<br/>ficou pra trás.<br/>
+        <em>Me compõe.</em>
+      </h1>
+      <p class="sobre-hero-sub">
+        Não apaguei nada. Fui aprendendo a carregar — e depois a transformar.
+        É isso que trago para cada sessão: não respostas prontas,
+        mas presença real.
+      </p>
+      <span class="crp-badge">Telma Palma · Psicóloga Clínica · CRP 06/216142 · TCC</span>
+    </div>
+    <div class="sobre-hero-img">
+      <!-- Hero Sobre -->
+      <img
+        src="Coisasqueninguemsabe.JPG"
+        alt="Telma Palma — Psicóloga Clínica"
+      />
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <section class="valores">
+    <p class="section-label">O que guia o meu trabalho</p>
+    <div class="valores-grid">
+      <div class="valor-item">
+        <div class="valor-icon"></div>
+        <h3 class="valor-title">Escuta sem julgamento</h3>
+        <p class="valor-text">Todo mundo faz mais sentido quando você conhece a história dele. Aqui, você é ouvida do início ao fim — sem pressa, sem rótulos.</p>
+      </div>
+      <div class="valor-item">
+        <div class="valor-icon"></div>
+        <h3 class="valor-title">Confidencialidade total</h3>
+        <p class="valor-text">O que acontece no consultório, fica no consultório. Um espaço seguro só funciona quando você sabe que pode ser inteira.</p>
+      </div>
+      <div class="valor-item">
+        <div class="valor-icon"></div>
+        <h3 class="valor-title">Processo, não receita</h3>
+        <p class="valor-text">Entender não é o mesmo que mudar. O trabalho terapêutico é atravessar — com apoio, no seu ritmo, um passinho por vez.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTÓRIA -->
+  <section class="historia">
+    <div class="historia-sticky">
+      <p class="section-label">Minha história</p>
+      <h2 class="historia-label">
+        Troquei segurança<br/>por <em>propósito.</em>
+      </h2>
+    </div>
+    <div class="historia-content">
+      <div class="historia-block">
+        <h3>A decisão mais assustadora e mais certa</h3>
+        <p>Houve um momento em que precisei escolher entre o caminho conhecido e o caminho certo. Escolhi o propósito — e todo dia agradeço por ter ignorado a voz que dizia que era tarde demais.</p>
+        <p>Já me perguntei se era tarde demais. Hoje sei que não era. E sei que você também pode estar nesse momento de dúvida — e que ele não dura para sempre.</p>
+      </div>
+      <div class="historia-block">
+        <h3>O medo não foi embora. Aprendi a andar com ele.</h3>
+        <p>Sou psicóloga — e ainda preciso questionar minha própria cabeça, todo dia. Não sou invencível. Tenho medos, inseguranças, dias difíceis. O que a terapia me ensinou não foi a não sentir: foi a observar sem ser arrastada.</p>
+        <p>Você é o céu. Os pensamentos são as nuvens. O céu é vasto, calmo, permanente. As nuvens são passageiras.</p>
+      </div>
+      <div class="historia-block">
+        <h3>Por que acredito no que faço</h3>
+        <p>Às vezes a sessão acaba e eu fico sentada em silêncio por alguns minutos. Me emociono de verdade. Comemoro cada avanço dos meus pacientes como se fosse meu. Rio com eles também — porque consultório não é lugar só de lágrimas.</p>
+        <p>Minha vida pessoal e profissional se misturaram de um jeito que eu não esperava. E não me arrependo.</p>
+      </div>
+      <div class="historia-block">
+        <h3>Formação e abordagem</h3>
+        <p>Psicóloga Clínica com registro CRP 06/216142, com formação em Terapia Cognitivo-Comportamental (TCC). A TCC é uma abordagem baseada em evidências que trabalha a relação entre pensamentos, emoções e comportamentos — ajudando a identificar padrões que já não servem e a construir outros que fazem sentido para a sua vida.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COISAS QUE NINGUÉM SABE -->
+  <section class="coisas">
+    <p class="section-label">Coisas que ninguém sabe sobre mim</p>
+    <h2 class="coisas-title">Mas agora vão ficar sabendo.</h2>
+    <div class="coisas-grid">
+      <div class="coisa-card">
+        <p>Preciso entender antes de opinar. Não consigo mais de outro jeito.</p>
+      </div>
+      <div class="coisa-card">
+        <p>Enxergo o mundo e as pessoas de forma diferente. E isso é mágico.</p>
+      </div>
+      <div class="coisa-card">
+        <p>Aprendi que toda pessoa faz mais sentido quando você conhece a história dela.</p>
+      </div>
+      <div class="coisa-card">
+        <p>Não sou perfeita. Tenho medos, me questiono, choro e vibro igual a você. Mas todo dia escolho estar aqui.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-sobre">
+    <p class="section-label">Próximo passo</p>
+    <h2 class="cta-title">
+      Todo mundo merece ser ouvido,<br/>compreendido e visto.<br/>Inclusive você.
+    </h2>
+    <p class="cta-sub">
+      Agendar é simples. Uma mensagem pelo WhatsApp já é o primeiro passo.
+    </p>
+    <a href="agendamento.html" class="btn-primary">Agendar Consulta</a>
+  </section>
+
+  <footer>
+    <a href="index.html" class="footer-logo">Telma Palma</a>
+    <ul class="footer-links">
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="servicos.html">Serviços</a></li>
+      <li><a href="pensamentos.html">Pensamentos</a></li>
+      <li><a href="agendamento.html">Agendamento</a></li>
+    </ul>
+    <p class="footer-copy">CRP 06/216142 · © 2026 Telma Palma</p>
+  </footer>
+
+</body>
+</html>

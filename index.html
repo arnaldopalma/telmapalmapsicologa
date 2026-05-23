@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Telma Palma — Psicóloga Clínica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream:     #F5F0EA;
+      --warm-white:#FDFAF6;
+      --slate-blue:#7B92A8;
+      --deep-blue: #4A6378;
+      --brown:     #8C6E55;
+      --text:      #2C2C2C;
+      --text-soft: #6B6B6B;
+      --border:    rgba(123,146,168,0.2);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--warm-white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      background: rgba(253,250,246,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 400; letter-spacing: 0.04em;
+      color: var(--deep-blue); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem; font-weight: 400; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-soft);
+      text-decoration: none; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--deep-blue); }
+    .nav-cta {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--warm-white);
+      background: var(--deep-blue); border: none;
+      padding: 0.7rem 1.6rem; cursor: pointer;
+      text-decoration: none; transition: background 0.3s;
+    }
+    .nav-cta:hover { background: var(--slate-blue); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 4rem 6rem 6rem;
+      background: var(--warm-white);
+      animation: fadeUp 1s ease both;
+    }
+    .hero-tag {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--slate-blue);
+      margin-bottom: 2rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+      font-weight: 300; line-height: 1.2;
+      color: var(--text); margin-bottom: 2rem;
+    }
+    .hero-title em {
+      font-style: italic; color: var(--deep-blue);
+    }
+    .hero-sub {
+      font-size: 1rem; font-weight: 300; line-height: 1.8;
+      color: var(--text-soft); max-width: 420px;
+      margin-bottom: 3rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; align-items: center; }
+    .btn-primary {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--warm-white);
+      background: var(--deep-blue); padding: 1rem 2.2rem;
+      text-decoration: none; transition: background 0.3s;
+    }
+    .btn-primary:hover { background: var(--slate-blue); }
+    .btn-ghost {
+      font-size: 0.78rem; font-weight: 400; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--deep-blue);
+      text-decoration: none; border-bottom: 1px solid var(--slate-blue);
+      padding-bottom: 2px; transition: opacity 0.3s;
+    }
+    .btn-ghost:hover { opacity: 0.6; }
+
+    .hero-right {
+      position: relative; overflow: hidden;
+      background: var(--cream);
+    }
+    .hero-img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      filter: sepia(8%) saturate(90%);
+    }
+    .hero-badge {
+      position: absolute; bottom: 3rem; left: -1.5rem;
+      background: var(--warm-white);
+      padding: 1.4rem 2rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      max-width: 260px;
+      animation: fadeUp 1.2s 0.3s ease both;
+    }
+    .hero-badge p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-style: italic;
+      line-height: 1.5; color: var(--text);
+    }
+    .hero-badge span {
+      display: block; margin-top: 0.8rem;
+      font-size: 0.7rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--slate-blue);
+    }
+
+    /* ── DORES ── */
+    .dores {
+      padding: 7rem 6rem;
+      background: var(--cream);
+    }
+    .section-label {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--slate-blue);
+      margin-bottom: 1.2rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 300; line-height: 1.25;
+      color: var(--text); max-width: 600px;
+      margin-bottom: 4rem;
+    }
+    .dores-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .dor-card {
+      background: var(--warm-white);
+      padding: 3rem 2.4rem;
+      transition: transform 0.3s;
+    }
+    .dor-card:hover { transform: translateY(-4px); }
+    .dor-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300;
+      color: var(--border); margin-bottom: 1.5rem;
+      line-height: 1;
+    }
+    .dor-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 400;
+      color: var(--text); margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    .dor-text {
+      font-size: 0.9rem; font-weight: 300;
+      line-height: 1.8; color: var(--text-soft);
+    }
+
+    /* ── SOBRE (teaser) ── */
+    .sobre-teaser {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 60vh;
+    }
+    .sobre-img-wrap {
+      position: relative; overflow: hidden;
+      background: var(--slate-blue);
+    }
+    .sobre-img {
+      width: 100%; height: 100%;
+      object-fit: cover; opacity: 0.85;
+      filter: sepia(15%) saturate(80%);
+    }
+    .sobre-content {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 5rem 5rem 5rem;
+      background: var(--deep-blue);
+      color: var(--warm-white);
+    }
+    .sobre-content .section-label { color: rgba(255,255,255,0.5); }
+    .sobre-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+      font-weight: 300; line-height: 1.3;
+      color: var(--warm-white); margin-bottom: 1.8rem;
+    }
+    .sobre-title em { font-style: italic; color: rgba(255,255,255,0.7); }
+    .sobre-text {
+      font-size: 0.95rem; font-weight: 300;
+      line-height: 1.9; color: rgba(255,255,255,0.75);
+      margin-bottom: 2.5rem; max-width: 440px;
+    }
+    .btn-light {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--deep-blue);
+      background: var(--warm-white); padding: 1rem 2.2rem;
+      text-decoration: none; display: inline-block;
+      transition: opacity 0.3s; width: fit-content;
+    }
+    .btn-light:hover { opacity: 0.85; }
+
+    /* ── QUOTE STRIP ── */
+    .quote-strip {
+      padding: 6rem 6rem;
+      background: var(--warm-white);
+      display: flex; align-items: center; gap: 4rem;
+    }
+    .quote-strip blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+      font-style: italic; font-weight: 300;
+      line-height: 1.4; color: var(--text);
+      max-width: 600px; flex: 1;
+      border-left: 2px solid var(--slate-blue);
+      padding-left: 2.5rem;
+    }
+    .quote-strip blockquote cite {
+      display: block; margin-top: 1.2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem; font-style: normal;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--slate-blue);
+    }
+    .quote-strip-visual {
+      flex: 1; display: flex; justify-content: flex-end;
+    }
+    .quote-strip-card {
+      background: var(--cream);
+      padding: 3rem;
+      max-width: 320px;
+    }
+    .qsc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 400;
+      color: var(--text); margin-bottom: 0.8rem;
+    }
+    .qsc-text {
+      font-size: 0.85rem; font-weight: 300;
+      line-height: 1.8; color: var(--text-soft);
+      margin-bottom: 1.5rem;
+    }
+    .qsc-link {
+      font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--deep-blue);
+      text-decoration: none; border-bottom: 1px solid var(--slate-blue);
+      padding-bottom: 2px;
+    }
+
+    /* ── CTA FINAL ── */
+    .cta-final {
+      padding: 8rem 6rem;
+      background: var(--cream);
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .cta-final .section-label { margin-bottom: 1.5rem; }
+    .cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+      font-weight: 300; line-height: 1.25;
+      color: var(--text); max-width: 680px;
+      margin-bottom: 1.5rem;
+    }
+    .cta-sub {
+      font-size: 0.95rem; font-weight: 300;
+      line-height: 1.8; color: var(--text-soft);
+      max-width: 480px; margin-bottom: 3rem;
+    }
+    .cta-actions { display: flex; gap: 1.2rem; justify-content: center; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem 6rem;
+      background: var(--text);
+      color: rgba(255,255,255,0.5);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; color: var(--warm-white);
+      text-decoration: none;
+    }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a {
+      font-size: 0.72rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.4);
+      text-decoration: none; transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--warm-white); }
+    .footer-copy { font-size: 0.72rem; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 5rem 2rem 3rem; }
+      .hero-right { height: 50vw; }
+      .hero-badge { left: 1rem; }
+      .dores { padding: 5rem 2rem; }
+      .dores-grid { grid-template-columns: 1fr; gap: 2px; }
+      .sobre-teaser { grid-template-columns: 1fr; }
+      .sobre-img-wrap { height: 50vw; }
+      .sobre-content { padding: 4rem 2rem; }
+      .quote-strip { flex-direction: column; padding: 4rem 2rem; gap: 2rem; }
+      .cta-final { padding: 5rem 2rem; }
+      .cta-actions { flex-direction: column; align-items: center; }
+      footer { flex-direction: column; gap: 1.5rem; padding: 2rem; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Telma Palma</a>
+    <ul class="nav-links">
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="servicos.html">Serviços</a></li>
+      <li><a href="pensamentos.html">Pensamentos</a></li>
+      <li><a href="agendamento.html">Agendamento</a></li>
+    </ul>
+    <a href="agendamento.html" class="nav-cta">Agendar Consulta</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-tag">Psicóloga Clínica · CRP 06/216142</p>
+      <h1 class="hero-title">
+        Um espaço para<br/>
+        <em>desacelerar a mente</em><br/>
+        e entender o que<br/>
+        você sente.
+      </h1>
+      <p class="hero-sub">
+        Aqui não há respostas prontas. Há escuta, presença e um processo
+        para você compreender suas emoções e recuperar o equilíbrio.
+      </p>
+      <div class="hero-actions">
+        <a href="agendamento.html" class="btn-primary">Agendar Consulta</a>
+        <a href="sobre.html" class="btn-ghost">Conheça a Telma</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img
+        src="Home.JPG"
+        alt="Telma Palma — Psicóloga Clínica"
+        class="hero-img"
+      />
+      <div class="hero-badge">
+        <p>"O corpo fala o que a gente cala."</p>
+        <span>Telma Palma · Psicóloga</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DORES -->
+  <section class="dores">
+    <p class="section-label">Para quem é este espaço</p>
+    <h2 class="section-title">
+      Reconhece alguma<br/>destas sensações?
+    </h2>
+    <div class="dores-grid">
+      <div class="dor-card">
+        <div class="dor-num">01</div>
+        <h3 class="dor-title">Você dorme e acorda mais cansada do que quando foi dormir</h3>
+        <p class="dor-text">O corpo já avisou. A mente ainda não ouviu. Esse cansaço que o sono não resolve tem origem emocional — e tem caminho.</p>
+      </div>
+      <div class="dor-card">
+        <div class="dor-num">02</div>
+        <h3 class="dor-title">Qualquer coisa pequena te irrita mais do que deveria</h3>
+        <p class="dor-text">Não é exagero. É o seu sistema nervoso em modo de alerta há tempo demais. O corpo fala o que a gente cala.</p>
+      </div>
+      <div class="dor-card">
+        <div class="dor-num">03</div>
+        <h3 class="dor-title">Você sabe o que precisa fazer. E mesmo assim não faz.</h3>
+        <p class="dor-text">Entender não é o mesmo que mudar. O conhecimento abre a porta — atravessar é outro processo. E esse processo tem apoio.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE TEASER -->
+  <section class="sobre-teaser">
+    <div class="sobre-img-wrap">
+      <img
+        src="autoridade.JPG"
+        alt="Telma Palma no consultório"
+        class="sobre-img"
+      />
+    </div>
+    <div class="sobre-content">
+      <p class="section-label">Sobre mim</p>
+      <h2 class="sobre-title">
+        Não sou perfeita.<br/>
+        <em>Mas escolho estar aqui,<br/>todos os dias.</em>
+      </h2>
+      <p class="sobre-text">
+        Psicóloga Clínica com abordagem TCC, acredito que todo mundo merece
+        ser ouvido, compreendido e visto. Inclusive você. O consultório não é
+        lugar só de lágrimas — a gente também ri. E comemoro cada avanço
+        como se fosse meu.
+      </p>
+      <a href="sobre.html" class="btn-light">Conhecer minha história</a>
+    </div>
+  </section>
+
+  <!-- QUOTE STRIP -->
+  <section class="quote-strip">
+    <blockquote>
+      "Você pode sentir tudo isso sem deixar que defina quem você é.
+      Você é o céu, não a nuvem."
+      <cite>Telma Palma · Psicóloga Clínica</cite>
+    </blockquote>
+    <div class="quote-strip-visual">
+      <div class="quote-strip-card">
+        <h3 class="qsc-title">Pensamentos que acolhem</h3>
+        <p class="qsc-text">
+          Reflexões sobre emoções, padrões de comportamento e o que significa
+          cuidar da saúde mental de verdade.
+        </p>
+        <a href="pensamentos.html" class="qsc-link">Ver o mural →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final">
+    <p class="section-label">Próximo passo</p>
+    <h2 class="cta-title">
+      Quando for a hora,<br/>este espaço estará aqui.
+    </h2>
+    <p class="cta-sub">
+      Agendar uma consulta é um ato de coragem — não de fraqueza.
+      O processo começa com uma conversa simples.
+    </p>
+    <div class="cta-actions">
+      <a href="agendamento.html" class="btn-primary">Agendar pelo WhatsApp</a>
+      <a href="servicos.html" class="btn-ghost">Ver como funciona</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="index.html" class="footer-logo">Telma Palma</a>
+    <ul class="footer-links">
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="servicos.html">Serviços</a></li>
+      <li><a href="pensamentos.html">Pensamentos</a></li>
+      <li><a href="agendamento.html">Agendamento</a></li>
+    </ul>
+    <p class="footer-copy">CRP 06/216142 · © 2026 Telma Palma</p>
+  </footer>
+
+</body>
+</html>
