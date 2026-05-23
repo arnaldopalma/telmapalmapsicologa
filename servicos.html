@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serviços — Telma Palma · Psicóloga Clínica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream:     #F5F0EA;
+      --warm-white:#FDFAF6;
+      --slate-blue:#7B92A8;
+      --deep-blue: #4A6378;
+      --brown:     #8C6E55;
+      --text:      #2C2C2C;
+      --text-soft: #6B6B6B;
+      --border:    rgba(123,146,168,0.2);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      background: rgba(253,250,246,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; letter-spacing: 0.04em; color: var(--deep-blue); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-soft); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--deep-blue); }
+    .nav-cta { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-white); background: var(--deep-blue); border: none; padding: 0.7rem 1.6rem; cursor: pointer; text-decoration: none; transition: background 0.3s; }
+    .nav-cta:hover { background: var(--slate-blue); }
+
+    /* HERO */
+    .hero {
+      padding-top: 80px;
+      min-height: 55vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding-left: 6rem; padding-right: 6rem; padding-bottom: 5rem;
+      background: var(--cream);
+      animation: fadeUp 1s ease both;
+    }
+    .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate-blue); margin-bottom: 1.2rem; }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 4vw, 4rem);
+      font-weight: 300; line-height: 1.2;
+      color: var(--text); max-width: 700px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em { font-style: italic; color: var(--deep-blue); }
+    .hero-sub {
+      font-size: 1rem; font-weight: 300; line-height: 1.9;
+      color: var(--text-soft); max-width: 520px;
+    }
+
+    /* SERVIÇOS PRINCIPAIS */
+    .servicos {
+      padding: 0 6rem 7rem;
+      background: var(--cream);
+    }
+    .servico-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 420px;
+      margin-bottom: 2px;
+    }
+    .servico-item:nth-child(even) .servico-img { order: 2; }
+    .servico-item:nth-child(even) .servico-content { order: 1; }
+    .servico-img {
+      overflow: hidden;
+      background: var(--slate-blue);
+    }
+    .servico-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      filter: sepia(8%) saturate(85%);
+      transition: transform 0.6s ease;
+    }
+    .servico-item:hover .servico-img img { transform: scale(1.03); }
+    .servico-content {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 4rem;
+      background: var(--warm-white);
+    }
+    .servico-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem; font-weight: 300; line-height: 1;
+      color: var(--border); margin-bottom: 1.5rem;
+    }
+    .servico-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 400; line-height: 1.25;
+      color: var(--text); margin-bottom: 1.2rem;
+    }
+    .servico-text {
+      font-size: 0.92rem; font-weight: 300; line-height: 1.9;
+      color: var(--text-soft); margin-bottom: 2rem;
+    }
+    .servico-tags {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+    .tag {
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--deep-blue);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.9rem;
+    }
+    .btn-outline {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--deep-blue);
+      border: 1px solid var(--deep-blue);
+      padding: 0.9rem 2rem; text-decoration: none;
+      display: inline-block; width: fit-content;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { background: var(--deep-blue); color: var(--warm-white); }
+
+    /* COMO FUNCIONA */
+    .como {
+      padding: 7rem 6rem;
+      background: var(--deep-blue);
+      color: var(--warm-white);
+    }
+    .como .section-label { color: rgba(255,255,255,0.45); margin-bottom: 1rem; }
+    .como-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+      font-weight: 300; line-height: 1.3;
+      color: var(--warm-white); margin-bottom: 4rem;
+      max-width: 500px;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+    .step {
+      background: rgba(255,255,255,0.05);
+      padding: 2.5rem 2rem;
+    }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300; line-height: 1;
+      color: rgba(255,255,255,0.2); margin-bottom: 1.5rem;
+    }
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 400;
+      color: var(--warm-white); margin-bottom: 0.8rem;
+    }
+    .step-text {
+      font-size: 0.85rem; font-weight: 300;
+      line-height: 1.8; color: rgba(255,255,255,0.6);
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 7rem 6rem;
+      background: var(--warm-white);
+    }
+    .faq-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+      font-weight: 300; line-height: 1.3;
+      color: var(--text); margin-bottom: 3rem;
+      max-width: 500px;
+    }
+    .faq-list { max-width: 700px; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 1.8rem 0;
+    }
+    .faq-q {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 400;
+      color: var(--text); margin-bottom: 0.8rem;
+    }
+    .faq-a {
+      font-size: 0.9rem; font-weight: 300;
+      line-height: 1.8; color: var(--text-soft);
+    }
+
+    /* CTA */
+    .cta {
+      padding: 8rem 6rem;
+      background: var(--cream);
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 3.2rem);
+      font-weight: 300; line-height: 1.25;
+      color: var(--text); max-width: 600px; margin-bottom: 1.5rem;
+    }
+    .cta-sub {
+      font-size: 0.95rem; font-weight: 300; line-height: 1.8;
+      color: var(--text-soft); max-width: 440px; margin-bottom: 3rem;
+    }
+    .btn-primary { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-white); background: var(--deep-blue); padding: 1rem 2.2rem; text-decoration: none; transition: background 0.3s; display: inline-block; }
+    .btn-primary:hover { background: var(--slate-blue); }
+
+    /* FOOTER */
+    footer { padding: 3rem 6rem; background: var(--text); color: rgba(255,255,255,0.5); display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--warm-white); text-decoration: none; }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--warm-white); }
+    .footer-copy { font-size: 0.72rem; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      .hero { padding: 6rem 2rem 4rem; }
+      .servicos { padding: 0 2rem 5rem; }
+      .servico-item { grid-template-columns: 1fr; }
+      .servico-item:nth-child(even) .servico-img { order: 0; }
+      .servico-item:nth-child(even) .servico-content { order: 0; }
+      .servico-img { height: 50vw; }
+      .servico-content { padding: 3rem 2rem; }
+      .como { padding: 5rem 2rem; }
+      .steps { grid-template-columns: 1fr 1fr; gap: 2px; }
+      .faq { padding: 5rem 2rem; }
+      .cta { padding: 5rem 2rem; }
+      footer { flex-direction: column; gap: 1.5rem; padding: 2rem; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Telma Palma</a>
+    <ul class="nav-links">
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="servicos.html" class="active">Serviços</a></li>
+      <li><a href="pensamentos.html">Pensamentos</a></li>
+      <li><a href="agendamento.html">Agendamento</a></li>
+    </ul>
+    <a href="agendamento.html" class="nav-cta">Agendar Consulta</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="section-label">Serviços</p>
+    <h1 class="hero-title">
+      Um espaço para <em>atravessar</em><br/>
+      o que só entender<br/>não resolve.
+    </h1>
+    <p class="hero-sub">
+      Atendimento psicológico individual com abordagem em Terapia
+      Cognitivo-Comportamental. Presencial ou online — no ritmo que faz sentido para você.
+    </p>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="servicos">
+
+    <div class="servico-item">
+      <div class="servico-img">
+        <img src="Servicos.JPG" alt="Psicoterapia Individual" />
+      </div>
+      <div class="servico-content">
+        <div class="servico-num">01</div>
+        <h2 class="servico-title">Psicoterapia Individual</h2>
+        <p class="servico-text">
+          Um espaço seguro e confidencial para você desacelerar a mente, compreender
+          suas emoções e trabalhar os padrões que já não servem. Aqui não há respostas
+          prontas — há processo, presença e escuta real.
+        </p>
+        <div class="servico-tags">
+          <span class="tag">Ansiedade</span>
+          <span class="tag">Burnout</span>
+          <span class="tag">Autoconhecimento</span>
+          <span class="tag">Padrões emocionais</span>
+        </div>
+        <a href="agendamento.html" class="btn-outline">Agendar consulta</a>
+      </div>
+    </div>
+
+    <div class="servico-item">
+      <div class="servico-img">
+        <img src="autoridade.JPG" alt="Atendimento Online" />
+      </div>
+      <div class="servico-content">
+        <div class="servico-num">02</div>
+        <h2 class="servico-title">Atendimento Online</h2>
+        <p class="servico-text">
+          A mesma qualidade de presença e escuta, no conforto do seu espaço.
+          Atendimento via plataforma segura, com sessões de 50 minutos,
+          agendadas conforme a sua rotina.
+        </p>
+        <div class="servico-tags">
+          <span class="tag">Flexibilidade</span>
+          <span class="tag">Sigilo total</span>
+          <span class="tag">Plataforma segura</span>
+        </div>
+        <a href="agendamento.html" class="btn-outline">Agendar consulta</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="como">
+    <p class="section-label">Como funciona</p>
+    <h2 class="como-title">Um passinho por vez.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Primeiro contato</h3>
+        <p class="step-text">Você manda uma mensagem pelo WhatsApp. Sem formulários, sem burocracia.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Agendamento</h3>
+        <p class="step-text">Escolhemos juntos o dia e horário que melhor encaixa na sua rotina.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Primeira sessão</h3>
+        <p class="step-text">Um espaço para você se apresentar e entender como o processo funciona. Sem pressa.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3 class="step-title">O processo</h3>
+        <p class="step-text">Sessões semanais de 50 minutos. Cada uma é um passo — e eles somam.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <p class="section-label">Dúvidas frequentes</p>
+    <h2 class="faq-title">O que você precisa saber antes de começar.</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3 class="faq-q">Nunca fiz terapia. Por onde começo?</h3>
+        <p class="faq-a">Pela primeira mensagem. A primeira sessão é justamente para você entender como funciona o processo — sem pressão, sem expectativas rígidas. É uma conversa.</p>
+      </div>
+      <div class="faq-item">
+        <h3 class="faq-q">Com que frequência são as sessões?</h3>
+        <p class="faq-a">Geralmente semanais, com 50 minutos de duração. A frequência pode ser ajustada conforme o momento do processo.</p>
+      </div>
+      <div class="faq-item">
+        <h3 class="faq-q">O atendimento online funciona igual ao presencial?</h3>
+        <p class="faq-a">Sim. A qualidade da escuta e do processo terapêutico é a mesma. A plataforma utilizada é segura e confidencial.</p>
+      </div>
+      <div class="faq-item">
+        <h3 class="faq-q">Quanto tempo dura o processo terapêutico?</h3>
+        <p class="faq-a">Depende de cada pessoa e do que traz para o processo. Não há um número fixo de sessões — avançamos juntos, no seu ritmo.</p>
+      </div>
+      <div class="faq-item">
+        <h3 class="faq-q">É confidencial?</h3>
+        <p class="faq-a">100%. O sigilo é um princípio ético fundamental da psicologia. O que é dito no consultório, fica no consultório.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <p class="section-label">Próximo passo</p>
+    <h2 class="cta-title">
+      Agendar é simples.<br/>Uma mensagem já é o começo.
+    </h2>
+    <p class="cta-sub">
+      Não precisa ter tudo organizado na cabeça para começar.
+      É exatamente para isso que existe o espaço terapêutico.
+    </p>
+    <a href="agendamento.html" class="btn-primary">Agendar pelo WhatsApp</a>
+  </section>
+
+  <footer>
+    <a href="index.html" class="footer-logo">Telma Palma</a>
+    <ul class="footer-links">
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="servicos.html">Serviços</a></li>
+      <li><a href="pensamentos.html">Pensamentos</a></li>
+      <li><a href="agendamento.html">Agendamento</a></li>
+    </ul>
+    <p class="footer-copy">CRP 06/216142 · © 2026 Telma Palma</p>
+  </footer>
+
+</body>
+</html>
