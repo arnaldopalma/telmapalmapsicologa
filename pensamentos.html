@@ -43,7 +43,7 @@
     /* ── HERO ── */
     .hero {
       padding-top: 80px;
-      min-height: 50vh;
+      min-height: 46vh;
       display: flex; flex-direction: column; justify-content: center;
       padding-left: 6rem; padding-right: 6rem; padding-bottom: 5rem;
       background: var(--cream);
@@ -65,63 +65,83 @@
     .hero-sub {
       font-size: 1rem; font-weight: 300; line-height: 1.9;
       color: var(--text-soft); max-width: 520px;
-      margin-bottom: 2rem;
     }
-    .instagram-follow {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--deep-blue);
-      text-decoration: none;
-      border-bottom: 1px solid var(--slate-blue);
-      padding-bottom: 2px;
-      transition: opacity 0.3s;
-      width: fit-content;
-    }
-    .instagram-follow:hover { opacity: 0.6; }
-    .instagram-follow svg { width: 16px; height: 16px; }
 
-    /* ── FEED SECTION ── */
-    .feed-section {
+    /* ── MURAL ── */
+    .mural {
       padding: 5rem 6rem 7rem;
       background: var(--warm-white);
     }
-    .feed-header {
-      display: flex; align-items: baseline; justify-content: space-between;
-      margin-bottom: 3rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 1.5rem;
+
+    /* Layout masonry com CSS columns */
+    .mural-grid {
+      columns: 3;
+      column-gap: 1.5rem;
     }
-    .feed-title {
+
+    .card {
+      break-inside: avoid;
+      margin-bottom: 1.5rem;
+      padding: 2.4rem;
+      transition: transform 0.3s;
+    }
+    .card:hover { transform: translateY(-3px); }
+
+    /* Variações de cor dos cards */
+    .card--cream    { background: var(--cream); }
+    .card--white    { background: var(--warm-white); border: 1px solid var(--border); }
+    .card--blue     { background: var(--deep-blue); }
+    .card--slate    { background: var(--slate-blue); }
+    .card--dark     { background: var(--text); }
+
+    /* Tema / categoria */
+    .card-tema {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; margin-bottom: 1.2rem;
+      display: block;
+    }
+    .card--cream .card-tema,
+    .card--white .card-tema  { color: var(--slate-blue); }
+    .card--blue  .card-tema,
+    .card--slate .card-tema,
+    .card--dark  .card-tema  { color: rgba(255,255,255,0.45); }
+
+    /* Citação principal */
+    .card-quote {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.6rem, 2.2vw, 2.2rem);
-      font-weight: 300; color: var(--text);
+      font-weight: 300; line-height: 1.4;
     }
-    .feed-link {
-      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--slate-blue); text-decoration: none;
-      transition: color 0.3s;
-    }
-    .feed-link:hover { color: var(--deep-blue); }
+    .card--cream .card-quote,
+    .card--white .card-quote { color: var(--text); }
+    .card--blue  .card-quote,
+    .card--slate .card-quote,
+    .card--dark  .card-quote { color: var(--warm-white); }
 
-    /* Grid de posts do Instagram */
-    .posts-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      align-items: start;
-    }
+    /* Tamanhos de citação */
+    .card-quote--lg { font-size: clamp(1.5rem, 2.2vw, 2rem); }
+    .card-quote--md { font-size: clamp(1.15rem, 1.6vw, 1.4rem); }
+    .card-quote--sm { font-size: clamp(1rem, 1.3vw, 1.15rem); font-style: italic; }
 
-    /* Cada bloco de embed fica centralizado */
-    .post-wrap {
-      display: flex;
-      justify-content: center;
+    /* Assinatura */
+    .card-autor {
+      display: block; margin-top: 1.4rem;
+      font-size: 0.68rem; letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
+    .card--cream .card-autor,
+    .card--white .card-autor { color: var(--text-soft); }
+    .card--blue  .card-autor,
+    .card--slate .card-autor,
+    .card--dark  .card-autor { color: rgba(255,255,255,0.4); }
 
-    /* Sobrescreve largura mínima do widget do Instagram para se adaptar ao grid */
-    .post-wrap .instagram-media {
-      min-width: unset !important;
-      width: 100% !important;
-      max-width: 100% !important;
+    /* Card com destaque lateral */
+    .card--accent {
+      border-left: 3px solid var(--slate-blue);
+      padding-left: 2rem;
+    }
+    .card--accent-blue {
+      border-left: 3px solid rgba(255,255,255,0.3);
+      padding-left: 2rem;
     }
 
     /* ── BANNER INSTAGRAM ── */
@@ -131,7 +151,6 @@
       display: flex; align-items: center; justify-content: space-between;
       gap: 3rem;
     }
-    .insta-banner-text {}
     .insta-banner-label {
       font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
       text-transform: uppercase; color: rgba(255,255,255,0.45);
@@ -168,14 +187,14 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1100px) {
-      .posts-grid { grid-template-columns: repeat(2, 1fr); }
+      .mural-grid { columns: 2; }
     }
     @media (max-width: 900px) {
       nav { padding: 1.2rem 2rem; }
       .nav-links { display: none; }
       .hero { padding: 6rem 2rem 4rem; }
-      .feed-section { padding: 4rem 2rem 5rem; }
-      .posts-grid { grid-template-columns: 1fr; }
+      .mural { padding: 4rem 2rem 5rem; }
+      .mural-grid { columns: 1; }
       .insta-banner { flex-direction: column; padding: 4rem 2rem; gap: 2rem; }
       footer { flex-direction: column; gap: 1.5rem; padding: 2rem; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
@@ -208,174 +227,129 @@
       Reflexões sobre emoções, padrões de comportamento e o que significa
       cuidar da saúde mental de verdade — sem filtros, sem receitas prontas.
     </p>
-    <a
-      href="https://www.instagram.com/telmapalma"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="instagram-follow"
-    >
-      <!-- Ícone Instagram -->
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-        <circle cx="12" cy="12" r="4"/>
-        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
-      </svg>
-      Seguir no Instagram
-    </a>
   </section>
 
-  <!-- FEED DE POSTS -->
-  <section class="feed-section">
-    <div class="feed-header">
-      <h2 class="feed-title">Últimas publicações</h2>
-      <a
-        href="https://www.instagram.com/telmapalma"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="feed-link"
-      >@telmapalma →</a>
+  <!-- MURAL DE CITAÇÕES -->
+  <section class="mural">
+    <div class="mural-grid">
+
+      <!-- Card 1 — Grande, azul escuro -->
+      <div class="card card--blue card--accent-blue">
+        <span class="card-tema">Sobre o corpo</span>
+        <p class="card-quote card-quote--lg">
+          "O corpo fala o que a gente cala."
+        </p>
+        <span class="card-autor">Telma Palma · Psicóloga Clínica</span>
+      </div>
+
+      <!-- Card 2 — Cream, médio -->
+      <div class="card card--cream">
+        <span class="card-tema">Sobre emoções</span>
+        <p class="card-quote card-quote--md">
+          "Você pode sentir tudo isso sem deixar que defina quem você é.
+          Você é o céu, não a nuvem."
+        </p>
+        <span class="card-autor">Telma Palma</span>
+      </div>
+
+      <!-- Card 3 — Branco, pequeno -->
+      <div class="card card--white card--accent">
+        <span class="card-tema">Sobre o processo</span>
+        <p class="card-quote card-quote--sm">
+          "Entender não é o mesmo que mudar. O conhecimento abre a porta —
+          atravessar é outro processo."
+        </p>
+        <span class="card-autor">Telma Palma</span>
+      </div>
+
+      <!-- Card 4 — Slate, médio -->
+      <div class="card card--slate">
+        <span class="card-tema">Sobre cansaço</span>
+        <p class="card-quote card-quote--md">
+          "O cansaço que o sono não resolve tem origem emocional — e tem caminho."
+        </p>
+        <span class="card-autor">Telma Palma · Psicóloga Clínica</span>
+      </div>
+
+      <!-- Card 5 — Cream, grande -->
+      <div class="card card--cream card--accent">
+        <span class="card-tema">Sobre quem sou</span>
+        <p class="card-quote card-quote--lg">
+          "Não sou perfeita. Mas escolho estar aqui, todos os dias."
+        </p>
+        <span class="card-autor">Telma Palma</span>
+      </div>
+
+      <!-- Card 6 — Escuro, pequeno -->
+      <div class="card card--dark">
+        <span class="card-tema">Sobre medos</span>
+        <p class="card-quote card-quote--sm">
+          "O medo não foi embora. Aprendi a andar com ele."
+        </p>
+        <span class="card-autor">Telma Palma</span>
+      </div>
+
+      <!-- Card 7 — Branco, médio -->
+      <div class="card card--white">
+        <span class="card-tema">Sobre pessoas</span>
+        <p class="card-quote card-quote--md">
+          "Toda pessoa faz mais sentido quando você conhece a história dela."
+        </p>
+        <span class="card-autor">Telma Palma · Psicóloga Clínica</span>
+      </div>
+
+      <!-- Card 8 — Azul, pequeno -->
+      <div class="card card--blue">
+        <span class="card-tema">Sobre propósito</span>
+        <p class="card-quote card-quote--sm">
+          "Houve um momento em que precisei escolher entre o caminho conhecido
+          e o caminho certo. Escolhi o propósito."
+        </p>
+        <span class="card-autor">Telma Palma</span>
+      </div>
+
+      <!-- Card 9 — Cream, médio -->
+      <div class="card card--cream">
+        <span class="card-tema">Sobre ansiedade</span>
+        <p class="card-quote card-quote--md">
+          "Não é exagero. É o seu sistema nervoso em modo de alerta há tempo demais."
+        </p>
+        <span class="card-autor">Telma Palma · Psicóloga Clínica</span>
+      </div>
+
+      <!-- Card 10 — Branco, grande -->
+      <div class="card card--white card--accent">
+        <span class="card-tema">Sobre coragem</span>
+        <p class="card-quote card-quote--lg">
+          "Agendar uma consulta é um ato de coragem — não de fraqueza."
+        </p>
+        <span class="card-autor">Telma Palma</span>
+      </div>
+
+      <!-- Card 11 — Slate, pequeno -->
+      <div class="card card--slate">
+        <span class="card-tema">Sobre transformação</span>
+        <p class="card-quote card-quote--sm">
+          "Não apaguei nada. Fui aprendendo a carregar — e depois a transformar."
+        </p>
+        <span class="card-autor">Telma Palma</span>
+      </div>
+
+      <!-- Card 12 — Escuro, médio -->
+      <div class="card card--dark card--accent-blue">
+        <span class="card-tema">Sobre o consultório</span>
+        <p class="card-quote card-quote--md">
+          "Todo mundo merece ser ouvido, compreendido e visto. Inclusive você."
+        </p>
+        <span class="card-autor">Telma Palma · Psicóloga Clínica</span>
+      </div>
+
     </div>
-
-    <!--
-    ══════════════════════════════════════════════════════════════════
-    COMO ADICIONAR NOVOS POSTS:
-
-    1. Abra o post no Instagram (no computador ou celular)
-    2. Clique nos "..." (três pontos) do post
-    3. Selecione "Incorporar" (ou "Embed")
-    4. Copie o bloco <blockquote> gerado
-    5. Cole dentro de uma <div class="post-wrap"> abaixo
-    6. O script no final da página carrega tudo automaticamente
-
-    Exemplo de estrutura:
-    <div class="post-wrap">
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/SEU_POST_ID/...">
-        ...
-      </blockquote>
-    </div>
-    ══════════════════════════════════════════════════════════════════
-    -->
-
-    <div class="posts-grid" id="posts-grid">
-
-      <!--
-        ┌─────────────────────────────────────────────┐
-        │  SUBSTITUA CADA BLOCO ABAIXO PELO EMBED     │
-        │  OFICIAL DO INSTAGRAM (ver instruções acima) │
-        └─────────────────────────────────────────────┘
-      -->
-
-      <!-- POST 1 -->
-      <div class="post-wrap">
-        <blockquote
-          class="instagram-media"
-          data-instgrm-captioned
-          data-instgrm-permalink="https://www.instagram.com/telmapalma/"
-          data-instgrm-version="14"
-          style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,.5),0 1px 10px 0 rgba(0,0,0,.15); margin:0; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"
-        >
-          <div style="padding:16px;">
-            <a href="https://www.instagram.com/telmapalma/" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-              <div style="display:flex; flex-direction:row; align-items:center;">
-                <div style="background-color:#F4F4F4; border-radius:50%; flex-grow:0; height:40px; margin-right:14px; width:40px;"></div>
-                <div style="display:flex; flex-direction:column; flex-grow:1; justify-content:center;">
-                  <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; margin-bottom:6px; width:100px;"></div>
-                  <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; width:60px;"></div>
-                </div>
-              </div>
-              <div style="padding:19% 0;"></div>
-              <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
-                <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="color:#c9c8cd; height:50px; width:50px;">
-                  <path d="M14.737 0h30.526C52.355 0 60 7.645 60 14.737v30.526C60 52.355 52.355 60 45.263 60H14.737C7.645 60 0 52.355 0 45.263V14.737C0 7.645 7.645 0 14.737 0z" fill="currentColor"/>
-                </svg>
-              </div>
-              <div style="padding-top:8px; color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Ver esta publicação no Instagram</div>
-              <div style="padding:12.5% 0;"></div>
-            </a>
-            <p style="color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
-              Uma publicação compartilhada por
-              <a href="https://www.instagram.com/telmapalma/" style="color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px;" target="_blank">Telma Palma</a>
-            </p>
-          </div>
-        </blockquote>
-      </div>
-
-      <!-- POST 2 — Cole aqui o embed do 2º post -->
-      <div class="post-wrap">
-        <blockquote
-          class="instagram-media"
-          data-instgrm-captioned
-          data-instgrm-permalink="https://www.instagram.com/telmapalma/"
-          data-instgrm-version="14"
-          style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,.5),0 1px 10px 0 rgba(0,0,0,.15); margin:0; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"
-        >
-          <div style="padding:16px;">
-            <a href="https://www.instagram.com/telmapalma/" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-              <div style="display:flex; flex-direction:row; align-items:center;">
-                <div style="background-color:#F4F4F4; border-radius:50%; flex-grow:0; height:40px; margin-right:14px; width:40px;"></div>
-                <div style="display:flex; flex-direction:column; flex-grow:1; justify-content:center;">
-                  <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; margin-bottom:6px; width:100px;"></div>
-                  <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; width:60px;"></div>
-                </div>
-              </div>
-              <div style="padding:19% 0;"></div>
-              <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
-                <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="color:#c9c8cd; height:50px; width:50px;">
-                  <path d="M14.737 0h30.526C52.355 0 60 7.645 60 14.737v30.526C60 52.355 52.355 60 45.263 60H14.737C7.645 60 0 52.355 0 45.263V14.737C0 7.645 7.645 0 14.737 0z" fill="currentColor"/>
-                </svg>
-              </div>
-              <div style="padding-top:8px; color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Ver esta publicação no Instagram</div>
-              <div style="padding:12.5% 0;"></div>
-            </a>
-            <p style="color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
-              Uma publicação compartilhada por
-              <a href="https://www.instagram.com/telmapalma/" style="color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px;" target="_blank">Telma Palma</a>
-            </p>
-          </div>
-        </blockquote>
-      </div>
-
-      <!-- POST 3 — Cole aqui o embed do 3º post -->
-      <div class="post-wrap">
-        <blockquote
-          class="instagram-media"
-          data-instgrm-captioned
-          data-instgrm-permalink="https://www.instagram.com/telmapalma/"
-          data-instgrm-version="14"
-          style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,.5),0 1px 10px 0 rgba(0,0,0,.15); margin:0; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"
-        >
-          <div style="padding:16px;">
-            <a href="https://www.instagram.com/telmapalma/" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-              <div style="display:flex; flex-direction:row; align-items:center;">
-                <div style="background-color:#F4F4F4; border-radius:50%; flex-grow:0; height:40px; margin-right:14px; width:40px;"></div>
-                <div style="display:flex; flex-direction:column; flex-grow:1; justify-content:center;">
-                  <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; margin-bottom:6px; width:100px;"></div>
-                  <div style="background-color:#F4F4F4; border-radius:4px; flex-grow:0; height:14px; width:60px;"></div>
-                </div>
-              </div>
-              <div style="padding:19% 0;"></div>
-              <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
-                <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" style="color:#c9c8cd; height:50px; width:50px;">
-                  <path d="M14.737 0h30.526C52.355 0 60 7.645 60 14.737v30.526C60 52.355 52.355 60 45.263 60H14.737C7.645 60 0 52.355 0 45.263V14.737C0 7.645 7.645 0 14.737 0z" fill="currentColor"/>
-                </svg>
-              </div>
-              <div style="padding-top:8px; color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Ver esta publicação no Instagram</div>
-              <div style="padding:12.5% 0;"></div>
-            </a>
-            <p style="color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
-              Uma publicação compartilhada por
-              <a href="https://www.instagram.com/telmapalma/" style="color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px;" target="_blank">Telma Palma</a>
-            </p>
-          </div>
-        </blockquote>
-      </div>
-
-    </div><!-- /posts-grid -->
   </section>
 
   <!-- BANNER INSTAGRAM -->
   <section class="insta-banner">
-    <div class="insta-banner-text">
+    <div>
       <p class="insta-banner-label">Instagram</p>
       <h2 class="insta-banner-title">
         Mais reflexões esperando<br/>por você <em>no Instagram.</em>
@@ -387,7 +361,6 @@
       rel="noopener noreferrer"
       class="btn-insta"
     >
-      <!-- Ícone Instagram -->
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
         <circle cx="12" cy="12" r="4"/>
@@ -408,9 +381,6 @@
     </ul>
     <p class="footer-copy">CRP 06/216142 · © 2026 Telma Palma</p>
   </footer>
-
-  <!-- Script oficial do Instagram para renderizar os embeds -->
-  <script async src="https://www.instagram.com/embed.js"></script>
 
 </body>
 </html>
