@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agendamento — Telma Palma · Psicóloga Clínica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream:     #F5F0EA;
+      --warm-white:#FDFAF6;
+      --slate-blue:#7B92A8;
+      --deep-blue: #4A6378;
+      --brown:     #8C6E55;
+      --text:      #2C2C2C;
+      --text-soft: #6B6B6B;
+      --border:    rgba(123,146,168,0.2);
+      --whatsapp:  #25D366;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text); overflow-x: hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      background: rgba(253,250,246,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; letter-spacing: 0.04em; color: var(--deep-blue); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-soft); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--deep-blue); }
+    .nav-cta { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-white); background: var(--deep-blue); border: none; padding: 0.7rem 1.6rem; cursor: pointer; text-decoration: none; transition: background 0.3s; }
+    .nav-cta:hover { background: var(--slate-blue); }
+
+    /* ── HERO ── */
+    .hero {
+      padding-top: 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 85vh;
+      animation: fadeUp 1s ease both;
+    }
+    .hero-content {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 5rem 6rem 6rem;
+      background: var(--deep-blue);
+      color: var(--warm-white);
+    }
+    .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1.2rem; }
+    .hero-content .section-label { color: rgba(255,255,255,0.45); }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 3.5vw, 3.8rem);
+      font-weight: 300; line-height: 1.2;
+      color: var(--warm-white); margin-bottom: 1.8rem;
+    }
+    .hero-title em { font-style: italic; color: rgba(255,255,255,0.65); }
+    .hero-sub {
+      font-size: 1rem; font-weight: 300; line-height: 1.9;
+      color: rgba(255,255,255,0.7); max-width: 420px;
+      margin-bottom: 2.8rem;
+    }
+
+    /* Botão WhatsApp */
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #fff;
+      background: var(--whatsapp);
+      padding: 1.1rem 2.4rem;
+      text-decoration: none;
+      transition: filter 0.3s;
+      width: fit-content;
+      border-radius: 2px;
+    }
+    .btn-whatsapp:hover { filter: brightness(1.1); }
+    .btn-whatsapp svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    .hero-note {
+      margin-top: 1.2rem;
+      font-size: 0.75rem; font-weight: 300;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.04em;
+    }
+
+    .hero-visual {
+      position: relative; overflow: hidden;
+      background: var(--cream);
+    }
+    .hero-visual img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      filter: sepia(8%) saturate(85%);
+    }
+
+    /* ── COMO FUNCIONA ── */
+    .como {
+      padding: 7rem 6rem;
+      background: var(--cream);
+    }
+    .como .section-label { color: var(--slate-blue); margin-bottom: 1rem; }
+    .como-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 2.8vw, 2.8rem);
+      font-weight: 300; line-height: 1.3;
+      color: var(--text); margin-bottom: 4rem;
+      max-width: 500px;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+    .step {
+      background: var(--warm-white);
+      padding: 2.8rem 2.2rem;
+      position: relative;
+      transition: transform 0.3s;
+    }
+    .step:hover { transform: translateY(-4px); }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem; font-weight: 300; line-height: 1;
+      color: var(--border); margin-bottom: 1.5rem;
+    }
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 400;
+      color: var(--text); margin-bottom: 0.8rem;
+    }
+    .step-text {
+      font-size: 0.88rem; font-weight: 300;
+      line-height: 1.8; color: var(--text-soft);
+    }
+
+    /* ── MODALIDADES ── */
+    .modalidades {
+      padding: 7rem 6rem;
+      background: var(--warm-white);
+    }
+    .modalidades .section-label { color: var(--slate-blue); margin-bottom: 3rem; }
+    .mod-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .mod-card {
+      padding: 4rem;
+      background: var(--cream);
+      transition: transform 0.3s;
+    }
+    .mod-card:hover { transform: translateY(-4px); }
+    .mod-icon {
+      width: 40px; height: 2px;
+      background: var(--slate-blue);
+      margin-bottom: 2rem;
+    }
+    .mod-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; font-weight: 400;
+      color: var(--text); margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+    .mod-text {
+      font-size: 0.92rem; font-weight: 300;
+      line-height: 1.9; color: var(--text-soft);
+      margin-bottom: 2rem;
+    }
+    .mod-details {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .mod-details li {
+      font-size: 0.8rem; font-weight: 400;
+      letter-spacing: 0.06em; color: var(--deep-blue);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .mod-details li::before {
+      content: '';
+      display: inline-block;
+      width: 18px; height: 1px;
+      background: var(--slate-blue);
+      flex-shrink: 0;
+    }
+
+    /* ── O QUE ESPERAR ── */
+    .esperar {
+      padding: 7rem 6rem;
+      background: var(--deep-blue);
+      color: var(--warm-white);
+    }
+    .esperar .section-label { color: rgba(255,255,255,0.45); margin-bottom: 1rem; }
+    .esperar-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+      font-weight: 300; line-height: 1.3;
+      color: var(--warm-white); margin-bottom: 4rem;
+      max-width: 500px;
+    }
+    .esperar-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .esperar-item {
+      background: rgba(255,255,255,0.05);
+      padding: 2.5rem;
+    }
+    .esperar-item h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 400;
+      color: var(--warm-white); margin-bottom: 0.8rem;
+    }
+    .esperar-item p {
+      font-size: 0.88rem; font-weight: 300;
+      line-height: 1.8; color: rgba(255,255,255,0.6);
+    }
+
+    /* ── CTA FINAL ── */
+    .cta-final {
+      padding: 8rem 6rem;
+      background: var(--cream);
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .cta-final .section-label { color: var(--slate-blue); margin-bottom: 1.5rem; }
+    .cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3.2vw, 3.4rem);
+      font-weight: 300; line-height: 1.25;
+      color: var(--text); max-width: 680px;
+      margin-bottom: 1.5rem;
+    }
+    .cta-sub {
+      font-size: 0.95rem; font-weight: 300;
+      line-height: 1.8; color: var(--text-soft);
+      max-width: 480px; margin-bottom: 3rem;
+    }
+    .cta-note {
+      margin-top: 1.5rem;
+      font-size: 0.78rem; font-weight: 300;
+      color: var(--text-soft);
+    }
+
+    /* ── FOOTER ── */
+    footer { padding: 3rem 6rem; background: var(--text); color: rgba(255,255,255,0.5); display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--warm-white); text-decoration: none; }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--warm-white); }
+    .footer-copy { font-size: 0.72rem; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: unset; }
+      .hero-content { padding: 5rem 2rem 3rem; }
+      .hero-visual { height: 60vw; }
+      .como { padding: 5rem 2rem; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .modalidades { padding: 5rem 2rem; }
+      .mod-grid { grid-template-columns: 1fr; }
+      .esperar { padding: 5rem 2rem; }
+      .esperar-grid { grid-template-columns: 1fr; }
+      .cta-final { padding: 5rem 2rem; }
+      footer { flex-direction: column; gap: 1.5rem; padding: 2rem; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+    @media (max-width: 600px) {
+      .steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Telma Palma</a>
+    <ul class="nav-links">
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="servicos.html">Serviços</a></li>
+      <li><a href="pensamentos.html">Pensamentos</a></li>
+      <li><a href="agendamento.html" class="active">Agendamento</a></li>
+    </ul>
+    <a href="agendamento.html" class="nav-cta">Agendar Consulta</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="section-label">Agendamento</p>
+      <h1 class="hero-title">
+        Uma mensagem<br/>já é o <em>primeiro passo.</em>
+      </h1>
+      <p class="hero-sub">
+        Não precisa ter tudo organizado na cabeça para começar.
+        É exatamente para isso que existe o espaço terapêutico.
+        Manda uma mensagem — é simples assim.
+      </p>
+
+      <!--
+        ════════════════════════════════════════════════════════
+        SUBSTITUA o número abaixo pelo número de WhatsApp real
+        da Telma. Formato: 55 + DDD + número (sem espaços ou traços)
+        Exemplo: 5511999998888
+
+        O texto após ?text= é a mensagem pré-preenchida.
+        ════════════════════════════════════════════════════════
+      -->
+      <a
+        href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20Telma!%20Gostaria%20de%20agendar%20uma%20consulta."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-whatsapp"
+      >
+        <!-- Ícone WhatsApp -->
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Agendar pelo WhatsApp
+      </a>
+      <p class="hero-note">Respondo em até 24 horas nos dias úteis.</p>
+    </div>
+    <div class="hero-visual">
+      <img
+        src="Home2.JPG"
+        alt="Consultório — Telma Palma Psicóloga"
+      />
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="como">
+    <p class="section-label">Como funciona</p>
+    <h2 class="como-title">Um passinho por vez.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Primeiro contato</h3>
+        <p class="step-text">Você manda uma mensagem pelo WhatsApp. Sem formulários, sem burocracia. Só uma mensagem simples dizendo que quer começar.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Agendamento</h3>
+        <p class="step-text">Combinamos juntos o dia, o horário e a modalidade — presencial ou online — que melhor encaixa na sua rotina.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Primeira sessão</h3>
+        <p class="step-text">Um espaço para você se apresentar, contar o que está sentindo e entender como o processo terapêutico funciona. Sem pressa.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3 class="step-title">O processo</h3>
+        <p class="step-text">Sessões semanais de 50 minutos. Cada uma é um passo — e eles somam mais do que parece.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODALIDADES -->
+  <section class="modalidades">
+    <p class="section-label">Modalidades de atendimento</p>
+    <div class="mod-grid">
+      <div class="mod-card">
+        <div class="mod-icon"></div>
+        <h2 class="mod-title">Presencial</h2>
+        <p class="mod-text">
+          No consultório, com toda a presença e o cuidado que o espaço físico oferece.
+          Um ambiente seguro, acolhedor e completamente confidencial.
+        </p>
+        <ul class="mod-details">
+          <li>Sessões de 50 minutos</li>
+          <li>Frequência semanal</li>
+          <li>São Paulo — SP</li>
+          <li>Ambiente sigiloso e acolhedor</li>
+        </ul>
+      </div>
+      <div class="mod-card">
+        <div class="mod-icon"></div>
+        <h2 class="mod-title">Online</h2>
+        <p class="mod-text">
+          A mesma qualidade de presença e escuta, no conforto do seu espaço.
+          Atendimento via plataforma segura, agendado conforme a sua rotina.
+        </p>
+        <ul class="mod-details">
+          <li>Sessões de 50 minutos</li>
+          <li>Frequência semanal</li>
+          <li>Plataforma segura e criptografada</li>
+          <li>Para qualquer cidade do Brasil</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- O QUE ESPERAR -->
+  <section class="esperar">
+    <p class="section-label">O que esperar</p>
+    <h2 class="esperar-title">
+      O que acontece<br/>dentro do consultório.
+    </h2>
+    <div class="esperar-grid">
+      <div class="esperar-item">
+        <h3>Escuta real</h3>
+        <p>Você fala, eu ouço. De verdade. Sem julgamentos, sem interrupções, sem conclusões apressadas. Todo mundo faz mais sentido quando você conhece a história.</p>
+      </div>
+      <div class="esperar-item">
+        <h3>Processo, não receita</h3>
+        <p>Não existem respostas prontas aqui. O trabalho é entender o que está por baixo — e construir juntas um caminho que faça sentido para a sua vida.</p>
+      </div>
+      <div class="esperar-item">
+        <h3>Sigilo absoluto</h3>
+        <p>O que é dito no consultório fica no consultório. A confidencialidade é um princípio ético e, antes disso, um compromisso pessoal meu com você.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final">
+    <p class="section-label">Próximo passo</p>
+    <h2 class="cta-title">
+      Quando for a hora,<br/>este espaço estará aqui.
+    </h2>
+    <p class="cta-sub">
+      Agendar uma consulta é um ato de coragem — não de fraqueza.
+      O processo começa com uma conversa simples.
+    </p>
+    <a
+      href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20Telma!%20Gostaria%20de%20agendar%20uma%20consulta."
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-whatsapp"
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Agendar pelo WhatsApp
+    </a>
+    <p class="cta-note">Ou me encontre no Instagram: <a href="https://www.instagram.com/telmapalma" target="_blank" rel="noopener noreferrer" style="color: var(--deep-blue); text-decoration: none; border-bottom: 1px solid var(--slate-blue);">@telmapalma</a></p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="index.html" class="footer-logo">Telma Palma</a>
+    <ul class="footer-links">
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="servicos.html">Serviços</a></li>
+      <li><a href="pensamentos.html">Pensamentos</a></li>
+      <li><a href="agendamento.html">Agendamento</a></li>
+    </ul>
+    <p class="footer-copy">CRP 06/216142 · © 2026 Telma Palma</p>
+  </footer>
+
+</body>
+</html>
